@@ -1,0 +1,19 @@
+#!/usr/bin/env sh                                                                             
+# This is a hacky way to view an MD as HTML in a browser. 
+
+# Check to make sure pandoc is available
+if ! command -v pandoc 2>&1 >/dev/null
+then
+    echo "pandoc not installed - apt install"
+    exit 1
+fi
+
+pandoc --metadata title="DRAFT" $1 -s -o  ~/tmp.html
+open ~/tmp.html
+
+# sleep just long enough for browswer to open before we remove the file
+sleep 2
+
+rm ~/tmp.html
+exit 0
+
